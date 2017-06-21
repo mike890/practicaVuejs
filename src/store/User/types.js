@@ -1,0 +1,7 @@
+const model = 'User/'
+export const FETCH_COLLECTION = model + 'FETCH_COLLECTION'
+export const GET_CURRENT_OBJECT = model + 'GET_CURRENT_OBJECT'
+export const ADD_OBJECT = model + 'ADD_OBJECT'
+export const UPDATE_OBJECT = model + 'UPDATE_OBJECT'
+export const DELETE_OBJECT = model + 'DELETE_OBJECT'
+export const CREATE_OBJECT = model + 'CREATE_OBJECT'
