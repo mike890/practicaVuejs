@@ -5,6 +5,7 @@
     <input v-model="user.first_name" placeholder="name"/><br>
     <input v-model="user.last_name" placeholder="last_name"/><br>
     <button type="submit" name="button">register</button>
+    <button type="submit" name="button" @click.prevent="update">update</button>
   </form>
 </template>
 <script>
@@ -33,9 +34,13 @@ export default {
   },
 
   methods: {
-    ...mapActions(['registerUser']),
+    ...mapActions(['registerUser', 'updateUser']),
+
     register () {
       this.registerUser(this.user)
+    },
+    update () {
+      this.updateUser(this.user)
     }
   },
 
