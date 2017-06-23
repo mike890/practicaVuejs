@@ -1,9 +1,7 @@
 import {
   FETCH_COLLECTION,
   GET_CURRENT_OBJECT,
-  ADD_OBJECT,
-  UPDATE_OBJECT,
-  DELETE_OBJECT
+  ADD_OBJECT
 } from './types'
 
 export default {
@@ -17,13 +15,5 @@ export default {
 
   [ADD_OBJECT] (state, object) {
     state.all.push(object)
-  },
-
-  [UPDATE_OBJECT] (state, object) {
-    let index = state.all.indexOf(state.current)
-    state.all[index] = object
-  },
-  [DELETE_OBJECT] (state, object) {
-    // let id = state.all.indexOf(state.current)
   }
 }
