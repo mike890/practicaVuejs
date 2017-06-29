@@ -1,10 +1,12 @@
 import axios from 'axios'
 const url = process.env.API_URL
 import {
-  FETCH_COLLECTION
+  FETCH_COLLECTION,
+  GET_CURRENT_OBJECT
 } from './types'
 
-export function getUsers ({commit}) {
+export function getUsers ({commit, dispatch}) {
+  dispatch('currentUser')
   return axios.get(url + '/users').then(({data}) => {
     commit(FETCH_COLLECTION, data)
   })
@@ -34,9 +36,12 @@ export function signoutUser ({commit}, object) {
   let user = JSON.parse(window.localStorage.getItem('user'))
   let headers = 'Token token=' + user.auth_token + '; email=' + user.email
   axios.defaults.headers.common['Authorization'] = headers
-  return axios.delete(url + '/sign_out', data => {
+  axios.delete(url + '/sign_out', data => {
     window.localStorage.removeItem('user')
   })
+  window.localStorage.clear()
+  console.log('entro al signout')
+  return ''
 }
 
 export function updateUser ({commit}, object) {
@@ -48,4 +53,14 @@ export function updateUser ({commit}, object) {
   // .then(res => {
   //   window.localStorage.setItem('user', JSON.stringify(res.data))
   })
+}
+
+export function currentUser ({commit}) {
+  let user = JSON.parse(window.localStorage.getItem('user'))
+  let headers = 'Token token=' + user.auth_token + '; email=' + user.email
+  if ((axios.defaults.headers.common['Authorization'] = headers)) {
+    commit(GET_CURRENT_OBJECT, user)
+  } else {
+    console.log('ya no hay autorizacion')
+  }
 }

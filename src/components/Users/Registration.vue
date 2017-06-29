@@ -12,7 +12,7 @@
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  name: 'UsersIndexComp',
+  name: 'UsersRegistrationComp',
 
   props: [],
 

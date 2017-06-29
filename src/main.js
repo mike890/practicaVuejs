@@ -15,13 +15,3 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
-
-Vue.mixin({
-  data: function () {
-    return {
-      get globalReadOnlyProperty () {
-        return "Can't change me!"
-      }
-    }
-  }
-})

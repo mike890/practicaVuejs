@@ -6,6 +6,10 @@
     <tbody>
       <tr v-for="user in users">
         <td>{{ user.email }}</td>
+        <button type="submit" name="button" v-show="user.email !== cuser.email">Delete</button>
+      </tr> <br>
+      <tr>
+        <td>{{ cuser.email }}</td>
       </tr>
     </tbody>
   </table>
@@ -26,7 +30,7 @@ export default {
   components: {},
 
   computed: {
-    ...mapGetters(['users'])
+    ...mapGetters(['users', 'cuser'])
   },
 
   methods: {},
