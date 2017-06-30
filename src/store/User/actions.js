@@ -26,6 +26,16 @@ export function createUser ({commit}, object) {
   })
 }
 
+export function destroyUser ({commit}, object) {
+  let user = JSON.parse(window.localStorage.getItem('user'))
+  let headers = 'Token token=' + user.auth_token + '; email=' + user.email
+  axios.defaults.headers.common['Authorization'] = headers
+  console.log(object.id)
+  // return axios.delete(url + '/users/', {
+  //   user: object.id
+  // })
+}
+
 export function siginUser ({commit}, object) {
   return axios.post(url + '/sign_in', object).then(res => {
     window.localStorage.setItem('user', JSON.stringify(res.data))

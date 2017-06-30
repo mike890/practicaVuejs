@@ -1,22 +1,22 @@
 <template>
-  <table>
-    <thead>
-      <th>Name</th>
-    </thead>
-    <tbody>
-      <tr v-for="user in users">
-        <td>{{ user.email }}</td>
-        <button type="submit" name="button" v-show="user.email !== cuser.email">Delete</button>
-      </tr> <br>
-      <tr>
-        <td>{{ cuser.email }}</td>
-      </tr>
-    </tbody>
-  </table>
-</template>
+  <div>
+    <h1>Bienvenido {{ cuser.first_name }}</h1>
+    <table>
+      <thead>
+        <th>Name</th>
+      </thead>
+      <tbody>
+        <tr v-for="user in users">
+          <td>{{ user.email }}, {{user.id}}</td>
+          <button type="submit" name="button" v-show="user.email !== cuser.email" @click.prevent="dUser" >Delete</button>
+        </tr> <br>
+      </tbody>
+    </table>
+  </div>
+  </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'UsersIndexComp',
@@ -24,7 +24,11 @@ export default {
   props: [],
 
   data () {
-    return {}
+    return {
+      data: {
+        id: 0
+      }
+    }
   },
 
   components: {},
@@ -33,7 +37,12 @@ export default {
     ...mapGetters(['users', 'cuser'])
   },
 
-  methods: {},
+  methods: {
+    ...mapActions(['destroyUser']),
+    dUser () {
+      this.destroyUser(this.data)
+    }
+  },
 
   watch: {},
 
