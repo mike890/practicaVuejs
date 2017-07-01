@@ -4,7 +4,8 @@ import mutations from './mutations'
 
 const initialState = {
   all: [],
-  current: {}
+  current: {},
+  id: {}
 }
 
 export default {

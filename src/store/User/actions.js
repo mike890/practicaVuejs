@@ -3,6 +3,7 @@ const url = process.env.API_URL
 import {
   FETCH_COLLECTION,
   GET_CURRENT_OBJECT
+  // FIND_OBJECT
 } from './types'
 
 export function getUsers ({commit, dispatch}) {
@@ -31,10 +32,13 @@ export function destroyUser ({commit}, object) {
   let headers = 'Token token=' + user.auth_token + '; email=' + user.email
   axios.defaults.headers.common['Authorization'] = headers
   console.log(object.id)
-  // return axios.delete(url + '/users/', {
-  //   user: object.id
-  // })
+  return axios.delete(url + '/users/' + object.id)
 }
+
+// export function findUser ({commit}, object) {
+//   console.log('entro a find')
+//   commit(FIND_OBJECT, object)
+// }
 
 export function siginUser ({commit}, object) {
   return axios.post(url + '/sign_in', object).then(res => {

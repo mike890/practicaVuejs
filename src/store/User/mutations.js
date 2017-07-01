@@ -1,7 +1,7 @@
 import {
   FETCH_COLLECTION,
   GET_CURRENT_OBJECT,
-  ADD_OBJECT
+  FIND_OBJECT
 } from './types'
 
 export default {
@@ -13,7 +13,8 @@ export default {
     state.current = object
   },
 
-  [ADD_OBJECT] (state, object) {
-    state.all.push(object)
+  [FIND_OBJECT] (state, object) {
+    state.id = state.all.find(item => item.id === object.id)
+    console.log(state.id)
   }
 }
